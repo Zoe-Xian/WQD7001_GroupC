@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            text-align: center;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            flex: 0 0 48%;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            flex: 0 0 48%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Blood Donation Classification</h1>
+        <form method="POST" action="/submit">
+            <div class="form-group">
+                <input type="text" name="blood_a" placeholder="Blood A" value="{{ request.form.get('blood_a', '') }}">
+                <input type="text" name="blood_b" placeholder="Blood B" value="{{ request.form.get('blood_b', '') }}">
+                <input type="text" name="blood_o" placeholder="Blood O" value="{{ request.form.get('blood_o', '') }}">
+                <input type="text" name="blood_ab" placeholder="Blood AB" value="{{ request.form.get('blood_ab', '') }}">
+                <input type="text" name="location_centre" placeholder="Location Centre" value="{{ request.form.get('location_centre', '') }}">
+                <input type="text" name="location_mobile" placeholder="Location Mobile" value="{{ request.form.get('location_mobile', '') }}">
+                <input type="text" name="type_wholeblood" placeholder="Type Wholeblood" value="{{ request.form.get('type_wholeblood', '') }}">
+                <input type="text" name="type_apheresis_platelet" placeholder="Apheresis Platelet" value="{{ request.form.get('type_apheresis_platelet', '') }}">
+                <input type="text" name="type_apheresis_plasma" placeholder="Apheresis Plasma" value="{{ request.form.get('type_apheresis_plasma', '') }}">
+                <input type="text" name="type_other" placeholder="Type Other" value="{{ request.form.get('type_other', '') }}">
+                <input type="text" name="social_civilian" placeholder="Social Civilian" value="{{ request.form.get('social_civilian', '') }}">
+                <input type="text" name="social_student" placeholder="Social Student" value="{{ request.form.get('social_student', '') }}">
+                <input type="text" name="social_policearmy" placeholder="Social Police/Army" value="{{ request.form.get('social_policearmy', '') }}">
+                <input type="text" name="donations_new" placeholder="Donations New" value="{{ request.form.get('donations_new', '') }}">
+                <input type="text" name="donations_irregular" placeholder="Donations Irregular" value="{{ request.form.get('donations_irregular', '') }}">
+                <input type="text" name="donations_regular" placeholder="Donations Regular" value="{{ request.form.get('donations_regular', '') }}">
+            </div>
+            <div class="button-container">
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+        {% if prediction %}
+            <div class="result">
+                Prediction Result: {{ prediction }}<br>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
